@@ -56,6 +56,7 @@ namespace Demo_TheTravelingSalesperson
         public Salesperson()
         {
             _citiesVisited = new List<string>();
+            _currentStock = new Product();
         }
 
         public Salesperson(string firstName, string lastName, string acountID)
@@ -65,6 +66,7 @@ namespace Demo_TheTravelingSalesperson
             _accountID = acountID;
 
             _citiesVisited = new List<string>();
+            _currentStock = new Product();
         }
 
         #endregion

@@ -7,6 +7,9 @@
     {
         None,
         Travel,
+        Buy,
+        Sell,
+        DisplayInventory,
         DisplayCities,
         DisplayAccountInfo,
         Exit

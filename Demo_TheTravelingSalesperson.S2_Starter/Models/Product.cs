@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Demo_TheTravelingSalesperson
 {
-    class Product
+    public class Product
     {
         #region ENUMERABLES
 

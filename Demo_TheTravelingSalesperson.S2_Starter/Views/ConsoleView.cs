@@ -1,10 +1,10 @@
-﻿using Demo_TheTravelingSalesperson.S2_Starter.Models;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static Demo_TheTravelingSalesperson.S2_Starter.Models.Product;
+
 
 namespace Demo_TheTravelingSalesperson
 {
@@ -88,7 +88,7 @@ namespace Demo_TheTravelingSalesperson
 
             ConsoleUtil.DisplayReset();
 
-            ConsoleUtil.DisplayMessage("Written by John Velis");
+            ConsoleUtil.DisplayMessage("Written by Connor Hansen");
             ConsoleUtil.DisplayMessage("Northwestern Michigan College");
             ConsoleUtil.DisplayMessage("");
 
@@ -155,6 +155,7 @@ namespace Demo_TheTravelingSalesperson
             ConsoleUtil.DisplayMessage("");
             ConsoleUtil.DisplayPromptMessage("Enter the product type: ");
             Product.ProductType productType;
+
             if (Enum.TryParse<Product.ProductType>(UppercaseFirst(Console.ReadLine()), out productType))
             {
                 salesperson.CurrentStock.Type = productType;
@@ -225,8 +226,11 @@ namespace Demo_TheTravelingSalesperson
                 ConsoleUtil.DisplayMessage("");
                 Console.Write(
                     "\t" + "1. Travel" + Environment.NewLine +
-                    "\t" + "2. Display Cities" + Environment.NewLine +
-                    "\t" + "3. Display Account Info" + Environment.NewLine +
+                    "\t" + "2. Buy" + Environment.NewLine +
+                    "\t" + "3. Sell" + Environment.NewLine +
+                    "\t" + "4. Display Inventory" + Environment.NewLine +
+                    "\t" + "5. Display Cities" + Environment.NewLine +
+                    "\t" + "6. Display Account Info" + Environment.NewLine +
                     "\t" + "E. Exit" + Environment.NewLine);
 
                 //
@@ -241,10 +245,22 @@ namespace Demo_TheTravelingSalesperson
                         usingMenu = false;
                         break;
                     case '2':
-                        userMenuChoice = MenuOption.DisplayCities;
+                        userMenuChoice = MenuOption.Buy;
                         usingMenu = false;
                         break;
                     case '3':
+                        userMenuChoice = MenuOption.Sell;
+                        usingMenu = false;
+                        break;
+                    case '4':
+                        userMenuChoice = MenuOption.DisplayInventory;
+                        usingMenu = false;
+                        break;
+                    case '5':
+                        userMenuChoice = MenuOption.DisplayCities;
+                        usingMenu = false;
+                        break;
+                    case '6':
                         userMenuChoice = MenuOption.DisplayAccountInfo;
                         usingMenu = false;
                         break;
@@ -317,6 +333,49 @@ namespace Demo_TheTravelingSalesperson
             ConsoleUtil.DisplayMessage("Account ID: " + salesperson.AccountID);
 
             DisplayContinuePrompt();
+        }
+
+        /// <summary>
+        /// changes string to lowercase with first letter uppercase
+        /// adapted from: https://www.dotnetperls.com/uppercase-first-letter
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        static string UppercaseFirst(string s)
+        {
+            // Check for empty string.
+            if (string.IsNullOrEmpty(s))
+            {
+                return string.Empty;
+            }
+            // Return char and concatenation substring.
+            return char.ToUpper(s[0]) + s.Substring(1).ToLower();
+        }
+
+        // Display Salesperson Inventory
+        public void DisplayInventory(Product product)
+        {
+            ConsoleUtil.HeaderText = "Inventory";
+            ConsoleUtil.DisplayReset();
+
+            int units = product.NumberOfUnits;
+            Product.ProductType productType = product.Type;
+
+            Console.WriteLine("You currently have " + units + " products of type: " + productType);
+
+            DisplayContinuePrompt();
+        }
+
+        // Prompt user to enter number of units to buy
+        public int DisplayGetNumberOfUnitsToBuy(Product product)
+        {
+            ConsoleUtil.HeaderText = "Buy";
+            ConsoleUtil.DisplayReset();
+
+            Console.WriteLine("Enter the number of units to buy: ");
+            int unitsToBuy = Convert.ToInt32(Console.ReadLine());
+
+            return unitsToBuy;
         }
 
         #endregion

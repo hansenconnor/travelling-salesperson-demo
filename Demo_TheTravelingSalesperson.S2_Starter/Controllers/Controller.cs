@@ -105,6 +105,15 @@ namespace Demo_TheTravelingSalesperson
                     case MenuOption.DisplayAccountInfo:
                         DisplayAccountInfo();
                         break;
+                    case MenuOption.Buy:
+                        DisplayGetNumberOfUnitsToBuy();
+                        break;
+                    case MenuOption.Sell:
+                        DisplayAccountInfo();
+                        break;
+                    case MenuOption.DisplayInventory:
+                        DisplayInventory();
+                        break;
                     case MenuOption.Exit:
                         _usingApplication = false;
                         break;
@@ -151,6 +160,16 @@ namespace Demo_TheTravelingSalesperson
         private void DisplayAccountInfo()
         {
             _consoleView.DisplayAccountInfo(_salesperson);
+        }
+
+        private void DisplayInventory()
+        {
+            _consoleView.DisplayInventory(_salesperson.CurrentStock);
+        }
+       
+        private void DisplayGetNumberOfUnitsToBuy()
+        {
+            _consoleView.DisplayGetNumberOfUnitsToBuy();
         }
 
         #endregion
