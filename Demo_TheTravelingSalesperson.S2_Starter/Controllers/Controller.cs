@@ -182,7 +182,7 @@ namespace Demo_TheTravelingSalesperson
             {
                 _consoleView.DisplayBackorderMessage();    
             }
-            else{
+            else {
                 return;
             }
         }
