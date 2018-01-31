@@ -109,7 +109,7 @@ namespace Demo_TheTravelingSalesperson
                         Buy();
                         break;
                     case MenuOption.Sell:
-                        DisplayAccountInfo();
+                        Sell();
                         break;
                     case MenuOption.DisplayInventory:
                         DisplayInventory();
@@ -173,6 +173,19 @@ namespace Demo_TheTravelingSalesperson
             _salesperson.CurrentStock.AddProducts(numberOfUnits);
         }
 
+        private void Sell() 
+        {
+            int numberOfUnits = _consoleView.DisplayGetNumberOfUnitsToSell(_salesperson.CurrentStock);
+            _salesperson.CurrentStock.SubtractProducts(numberOfUnits);
+
+            if (_salesperson.CurrentStock.NumberOfUnits < 0) 
+            {
+                _consoleView.DisplayBackorderMessage();    
+            }
+            else{
+                return;
+            }
+        }
         #endregion
     }
 }

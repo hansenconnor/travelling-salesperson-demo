@@ -13,9 +13,9 @@ namespace Demo_TheTravelingSalesperson
         public enum ProductType
         {
             None,
-            Furry,
-            Spotted,
-            Dancing
+            Keyboard,
+            Mouse,
+            Monitor
         }
 
         #endregion

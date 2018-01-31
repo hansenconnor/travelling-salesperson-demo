@@ -361,8 +361,16 @@ namespace Demo_TheTravelingSalesperson
             int units = product.NumberOfUnits;
             Product.ProductType productType = product.Type;
 
-            Console.WriteLine("You currently have " + units + " products of type: " + productType);
-
+            if (product.NumberOfUnits < 0)
+            {
+                Console.WriteLine("You are currently on backorder of the following product type: " + productType);
+                Console.WriteLine("Number of products on backorder:  " + product.NumberOfUnits * -1);
+            }
+            else
+            {
+                Console.WriteLine("You currently have " + units + " products of type: " + productType);
+            }
+      
             DisplayContinuePrompt();
         }
 
@@ -378,6 +386,27 @@ namespace Demo_TheTravelingSalesperson
             return unitsToBuy;
         }
 
+        // Prompt user to enter number of units to sell
+        public int DisplayGetNumberOfUnitsToSell(Product product)
+        {
+            ConsoleUtil.HeaderText = "Sell";
+            ConsoleUtil.DisplayReset();
+
+            Console.WriteLine("Enter the number of units to sell: ");
+            int unitsToSell = Convert.ToInt32(Console.ReadLine());
+
+            return unitsToSell;
+        }
+
+        // Display a backorder message
+        public void DisplayBackorderMessage()
+        {
+            ConsoleUtil.HeaderText = "Alert";
+            ConsoleUtil.DisplayReset();
+
+            Console.WriteLine("This unit is on backorder!");
+            Console.ReadLine();
+        }
         #endregion
     }
 }

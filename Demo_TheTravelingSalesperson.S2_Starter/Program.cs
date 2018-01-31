@@ -10,7 +10,6 @@ namespace Demo_TheTravelingSalesperson
     {
         static void Main(string[] args)
         {
-            //chad?
             Controller appController = new Controller();
         }
     }
