@@ -12,6 +12,9 @@
         DisplayInventory,
         DisplayCities,
         DisplayAccountInfo,
+        SaveAccountInfo,
+        LoadAccountInfo,
+        EditAccountInfo,
         Exit
     }
 }

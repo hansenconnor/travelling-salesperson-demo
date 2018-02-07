@@ -231,6 +231,9 @@ namespace Demo_TheTravelingSalesperson
                     "\t" + "4. Display Inventory" + Environment.NewLine +
                     "\t" + "5. Display Cities" + Environment.NewLine +
                     "\t" + "6. Display Account Info" + Environment.NewLine +
+                    "\t" + "7. Save Account Info" + Environment.NewLine +
+                    "\t" + "8. Load Account Info" + Environment.NewLine +
+                    "\t" + "9. Edit Account Info" + Environment.NewLine +
                     "\t" + "E. Exit" + Environment.NewLine);
 
                 //
@@ -262,6 +265,18 @@ namespace Demo_TheTravelingSalesperson
                         break;
                     case '6':
                         userMenuChoice = MenuOption.DisplayAccountInfo;
+                        usingMenu = false;
+                        break;
+                    case '7':
+                        userMenuChoice = MenuOption.SaveAccountInfo;
+                        usingMenu = false;
+                        break;
+                    case '8':
+                        userMenuChoice = MenuOption.LoadAccountInfo;
+                        usingMenu = false;
+                        break;
+                    case '9':
+                        userMenuChoice = MenuOption.EditAccountInfo;
                         usingMenu = false;
                         break;
                     case 'E':

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+using System.Xml.Serialization;
 
 namespace Demo_TheTravelingSalesperson
 {
@@ -114,6 +116,15 @@ namespace Demo_TheTravelingSalesperson
                     case MenuOption.DisplayInventory:
                         DisplayInventory();
                         break;
+                    case MenuOption.SaveAccountInfo:
+                        SaveAccountInfo(_salesperson);
+                        break;
+                    case MenuOption.LoadAccountInfo:
+                        _salesperson = LoadAccountInfo();
+                        break;
+                    case MenuOption.EditAccountInfo:
+                        _salesperson = LoadAccountInfo();
+                        break;
                     case MenuOption.Exit:
                         _usingApplication = false;
                         break;
@@ -186,6 +197,42 @@ namespace Demo_TheTravelingSalesperson
                 return;
             }
         }
+
+        public static void SaveAccountInfo(Salesperson salesperson) 
+        {
+            // instantiate an XmlSerializer object with the object class
+            XmlSerializer serializer = new XmlSerializer(typeof(Salesperson));
+
+            // instantiate a StreamWriter object with the data file loation
+            StreamWriter sWriter = new StreamWriter("AccountInfo.xml");
+
+            // write the serialized data to the xml file
+            using (sWriter)
+            {
+                serializer.Serialize(sWriter, salesperson);
+            }               
+        }
+
+        public static Salesperson LoadAccountInfo() 
+        {
+            Salesperson salesPerson = new Salesperson();
+
+            // instantiate an XmlSerializer object with the object class
+            XmlSerializer serializer = new XmlSerializer(typeof(Salesperson));
+
+            // instantiate a StreamReader object with the data file location
+            StreamReader sReader = new StreamReader("AccountInfo.xml");
+
+            using (sReader)
+            {
+                Object xmlObject = serializer.Deserialize(sReader);
+                salesPerson = (Salesperson)xmlObject;
+            }
+
+            return salesPerson;
+        }
+
+        public static void EditAccountInfo(){}
         #endregion
     }
 }
