@@ -240,7 +240,7 @@ namespace Demo_TheTravelingSalesperson
             switch (userMenuChoice)
             {
                 case MenuOption.EditFirstName:
-                    _consoleView.EditLastName();
+                    _consoleView.EditFirstName();
                     break; 
                 case MenuOption.EditLastName:
                     _consoleView.EditLastName();
