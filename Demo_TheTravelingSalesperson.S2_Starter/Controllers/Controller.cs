@@ -123,7 +123,7 @@ namespace Demo_TheTravelingSalesperson
                         _salesperson = LoadAccountInfo();
                         break;
                     case MenuOption.EditAccountInfo:
-                        _salesperson = LoadAccountInfo();
+                        EditAccountInfo();
                         break;
                     case MenuOption.Exit:
                         _usingApplication = false;
@@ -232,7 +232,46 @@ namespace Demo_TheTravelingSalesperson
             return salesPerson;
         }
 
-        public static void EditAccountInfo(){}
+        private void EditAccountInfo() 
+        {
+            MenuOption userMenuChoice;
+            userMenuChoice = _consoleView.DisplayGetAccountInfoToEdit();
+            
+            switch (userMenuChoice)
+            {
+                case MenuOption.EditFirstName:
+                    _consoleView.EditLastName();
+                    break; 
+                case MenuOption.EditLastName:
+                    _consoleView.EditLastName();
+                    break;
+                case MenuOption.EditAccountId:
+                    _consoleView.EditAccountID();
+                    break;
+                case MenuOption.Exit:
+                    _usingApplication = false;
+                    break;
+                default:
+                    break;
+            }
+            
+
+
+
+            //_salesperson = _consoleView.DisplayEditAccountInfo(_salesperson);
+            // get userMenuChoice from DisplayEditAccountInfo (rename this method to
+            // editAccountMenuChoice or something
+
+            //use switch case here
+            //if (//usermenuchoice 1)
+            //{
+             //   _salesperson.FirstName = _consoleView.ChangeFirstName();
+            //}
+
+           // _salesperson.FirstName = _consoleView.ChangeFirstName();
+           // _salesperson.LastName = _consoleView.ChangeLastName();
+           // _salesperson.AccountID = _consoleView.ChangeAccountID();
+        }            
         #endregion
     }
 }

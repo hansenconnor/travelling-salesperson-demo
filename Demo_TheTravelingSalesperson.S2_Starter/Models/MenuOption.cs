@@ -15,6 +15,9 @@
         SaveAccountInfo,
         LoadAccountInfo,
         EditAccountInfo,
+        EditFirstName,
+        EditLastName,
+        EditAccountId,
         Exit
     }
 }

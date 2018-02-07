@@ -422,6 +422,114 @@ namespace Demo_TheTravelingSalesperson
             Console.WriteLine("This unit is on backorder!");
             Console.ReadLine();
         }
+
+        // Prompt the user to edit their first name
+        public string EditFirstName()
+        {
+            string firstName;
+
+            ConsoleUtil.HeaderText = "Edit First Name";
+            ConsoleUtil.DisplayReset();
+
+            Console.WriteLine("Change first name to: ");
+            firstName = Console.ReadLine();
+
+            return firstName;
+        }
+
+        // Prompt the user to edit their first name
+        public string EditLastName()
+        {
+            string lastName;
+
+            ConsoleUtil.HeaderText = "Edit Last Name";
+            ConsoleUtil.DisplayReset();
+
+            Console.WriteLine("Change last name to: ");
+            lastName = Console.ReadLine();
+
+            return lastName;
+        }
+
+        // Prompt the user to edit their first name
+        public string EditAccountID()
+        {
+            string accountID;
+
+            ConsoleUtil.HeaderText = "Edit Account ID";
+            ConsoleUtil.DisplayReset();
+
+            Console.WriteLine("Change Account ID to: ");
+            accountID = Console.ReadLine();
+
+            return accountID;
+        }
+
+        // Display Account Edit screen
+        public MenuOption DisplayGetAccountInfoToEdit()
+        {
+            MenuOption userMenuChoice = MenuOption.None;
+            
+            bool usingMenu = true;
+
+            while (usingMenu)
+            {
+                //
+                // set up display area
+                //
+                ConsoleUtil.DisplayReset();
+                Console.CursorVisible = false;
+
+                //
+                // display the menu
+                //
+                ConsoleUtil.DisplayMessage("Please type the number of the account info you would like to edit:");
+                ConsoleUtil.DisplayMessage("");
+                Console.Write(
+                    "\t" + "1. First Name" + Environment.NewLine +
+                    "\t" + "2. Last Name" + Environment.NewLine +
+                    "\t" + "3. Account ID" + Environment.NewLine +
+                    "\t" + "E. Exit" + Environment.NewLine);
+
+                //
+                // get and process the user's response
+                // note: ReadKey argument set to "true" disables the echoing of the key press
+                //
+                ConsoleKeyInfo userResponse = Console.ReadKey(true);
+                switch (userResponse.KeyChar)
+                {
+                    case '1':
+                        EditFirstName();
+                        usingMenu = false;
+                        break;
+                    case '2':
+                        EditLastName();
+                        usingMenu = false;
+                        break;
+                    case '3':
+                        EditAccountID();
+                        usingMenu = false;
+                        break;
+                    case 'E':
+                    case 'e':
+                        usingMenu = false;
+                        break;
+                    default:
+                        ConsoleUtil.DisplayMessage(
+                            "It appears you have selected an incorrect choice." + Environment.NewLine +
+                            "Press any key to continue or the ESC key to quit the application.");
+
+                        userResponse = Console.ReadKey(true);
+                        if (userResponse.Key == ConsoleKey.Escape)
+                        {
+                            usingMenu = false;
+                        }
+                        break;
+                }
+            }
+            Console.CursorVisible = true;
+            return userMenuChoice;
+        }
         #endregion
     }
 }
