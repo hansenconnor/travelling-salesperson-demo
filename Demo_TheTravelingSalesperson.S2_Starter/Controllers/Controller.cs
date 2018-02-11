@@ -182,6 +182,11 @@ namespace Demo_TheTravelingSalesperson
         {
             int numberOfUnits = _consoleView.DisplayGetNumberOfUnitsToBuy(_salesperson.CurrentStock);
             _salesperson.CurrentStock.AddProducts(numberOfUnits);
+
+            if (_salesperson.CurrentStock.NumberOfUnits > 0) 
+            {
+                _salesperson.OnBackorder = false; 
+            }
         }
 
         private void Sell() 
@@ -191,7 +196,8 @@ namespace Demo_TheTravelingSalesperson
 
             if (_salesperson.CurrentStock.NumberOfUnits < 0) 
             {
-                _consoleView.DisplayBackorderMessage();    
+                _consoleView.DisplayBackorderMessage();   
+                _salesperson.OnBackorder = true;
             }
             else {
                 return;
@@ -240,13 +246,21 @@ namespace Demo_TheTravelingSalesperson
             switch (userMenuChoice)
             {
                 case MenuOption.EditFirstName:
-                    _consoleView.EditFirstName();
+                    _salesperson.FirstName = _consoleView.EditFirstName();
                     break; 
                 case MenuOption.EditLastName:
-                    _consoleView.EditLastName();
+                    _salesperson.LastName = _consoleView.EditLastName();
                     break;
                 case MenuOption.EditAccountId:
-                    _consoleView.EditAccountID();
+                    _salesperson.AccountID = _consoleView.EditAccountID();
+                    break;
+                case MenuOption.EditAge:
+                    _salesperson.Age = _consoleView.EditAge();
+                    break;
+                case MenuOption.EditGender:
+                    //Salesperson.Gender = _consoleView.EditGender();
+                    //Salesperson.Gender myGender = (Salesperson.Gender)_consoleView.EditGender();
+                    _salesperson.gender = _consoleView.EditGender();
                     break;
                 case MenuOption.Exit:
                     _usingApplication = false;

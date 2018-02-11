@@ -136,6 +136,10 @@ namespace Demo_TheTravelingSalesperson
             salesperson.AccountID = Console.ReadLine();
             ConsoleUtil.DisplayMessage("");
 
+            ConsoleUtil.DisplayPromptMessage("Enter your age: ");
+            salesperson.Age = Convert.ToInt32(Console.ReadLine());
+            ConsoleUtil.DisplayMessage("");
+
             // Display list of products from Product.cs
             foreach (string productTypeName in Enum.GetNames(typeof(Product.ProductType)))
             {
@@ -326,6 +330,8 @@ namespace Demo_TheTravelingSalesperson
 
             ConsoleUtil.DisplayMessage("You have traveled to the following cities.");
             ConsoleUtil.DisplayMessage("");
+            ConsoleUtil.DisplayMessage("You have traveled to " + salesperson.CitiesVisited.Count() + " city(s).");
+            ConsoleUtil.DisplayMessage("");
 
             foreach (string city in salesperson.CitiesVisited)
             {
@@ -346,6 +352,9 @@ namespace Demo_TheTravelingSalesperson
             ConsoleUtil.DisplayMessage("First Name: " + salesperson.FirstName);
             ConsoleUtil.DisplayMessage("Last Name: " + salesperson.LastName);
             ConsoleUtil.DisplayMessage("Account ID: " + salesperson.AccountID);
+            ConsoleUtil.DisplayMessage("Age: " + salesperson.Age);
+            ConsoleUtil.DisplayMessage("On Backorder: " + salesperson.OnBackorder);
+            ConsoleUtil.DisplayMessage("Gender: " + salesperson.gender);
 
             DisplayContinuePrompt();
         }
@@ -437,7 +446,7 @@ namespace Demo_TheTravelingSalesperson
             return firstName;
         }
 
-        // Prompt the user to edit their first name
+        // Prompt the user to edit their Last Name
         public string EditLastName()
         {
             string lastName;
@@ -451,7 +460,7 @@ namespace Demo_TheTravelingSalesperson
             return lastName;
         }
 
-        // Prompt the user to edit their first name
+        // Prompt the user to edit their Account ID
         public string EditAccountID()
         {
             string accountID;
@@ -463,6 +472,42 @@ namespace Demo_TheTravelingSalesperson
             accountID = Console.ReadLine();
 
             return accountID;
+        }
+
+        // Prompt the user to edit their age
+        public int EditAge()
+        {
+            int age;
+
+            ConsoleUtil.HeaderText = "Edit Age";
+            ConsoleUtil.DisplayReset();
+
+            Console.WriteLine("Change age to: ");
+            age = Convert.ToInt32(Console.ReadLine());
+
+            return age;
+        }
+
+        // Prompt the user to edit their gender
+        public Salesperson.Gender EditGender()
+        {
+
+            ConsoleUtil.HeaderText = "Edit Gender";
+            ConsoleUtil.DisplayReset();
+
+            Console.WriteLine("Change gender to: ");
+
+            Salesperson.Gender gender;
+
+            if (Enum.TryParse<Salesperson.Gender>(UppercaseFirst(Console.ReadLine()), out gender))
+            {
+                return gender;
+            }
+            else
+            {
+                return Salesperson.Gender.None;
+            }
+     
         }
 
         // Display Account Edit screen
@@ -489,6 +534,8 @@ namespace Demo_TheTravelingSalesperson
                     "\t" + "1. First Name" + Environment.NewLine +
                     "\t" + "2. Last Name" + Environment.NewLine +
                     "\t" + "3. Account ID" + Environment.NewLine +
+                    "\t" + "4. Age" + Environment.NewLine +
+                    "\t" + "5. Gender" + Environment.NewLine +
                     "\t" + "E. Exit" + Environment.NewLine);
 
                 //
@@ -499,15 +546,23 @@ namespace Demo_TheTravelingSalesperson
                 switch (userResponse.KeyChar)
                 {
                     case '1':
-                        EditFirstName();
+                        userMenuChoice = MenuOption.EditFirstName;
                         usingMenu = false;
                         break;
                     case '2':
-                        EditLastName();
+                        userMenuChoice = MenuOption.EditLastName;
                         usingMenu = false;
                         break;
                     case '3':
-                        EditAccountID();
+                        userMenuChoice = MenuOption.EditAccountId;
+                        usingMenu = false;
+                        break;
+                    case '4':
+                        userMenuChoice = MenuOption.EditAge;
+                        usingMenu = false;
+                        break;
+                    case '5':
+                        userMenuChoice = MenuOption.EditGender;
                         usingMenu = false;
                         break;
                     case 'E':

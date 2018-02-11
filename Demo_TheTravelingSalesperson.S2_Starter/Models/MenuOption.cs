@@ -18,6 +18,8 @@
         EditFirstName,
         EditLastName,
         EditAccountId,
+        EditAge,
+        EditGender,
         Exit
     }
 }
