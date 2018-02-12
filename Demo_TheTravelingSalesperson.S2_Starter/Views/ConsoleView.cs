@@ -249,6 +249,7 @@ namespace Demo_TheTravelingSalesperson
                 ConsoleUtil.DisplayMessage("Please type the number of your menu choice.");
                 ConsoleUtil.DisplayMessage("");
                 Console.Write(
+                    "\t" + "0. Setup Account" + Environment.NewLine +
                     "\t" + "1. Travel" + Environment.NewLine +
                     "\t" + "2. Buy" + Environment.NewLine +
                     "\t" + "3. Sell" + Environment.NewLine +
@@ -301,6 +302,10 @@ namespace Demo_TheTravelingSalesperson
                         break;
                     case '9':
                         userMenuChoice = MenuOption.EditAccountInfo;
+                        usingMenu = false;
+                        break;
+                    case '0':
+                        userMenuChoice = MenuOption.SetupAccount;
                         usingMenu = false;
                         break;
                     case 'E':

@@ -20,6 +20,7 @@
         EditAccountId,
         EditAge,
         EditGender,
+        SetupAccount,
         Exit
     }
 }

@@ -78,7 +78,7 @@ namespace Demo_TheTravelingSalesperson
             //
             // setup initial salesperson account
             //
-            _salesperson = _consoleView.DisplaySetupAccount();
+            //_salesperson = _consoleView.DisplaySetupAccount();
 
             //
             // application loop
@@ -97,6 +97,9 @@ namespace Demo_TheTravelingSalesperson
                 switch (userMenuChoice)
                 {
                     case MenuOption.None:
+                        break;
+                    case MenuOption.SetupAccount:
+                        _salesperson = _consoleView.DisplaySetupAccount();
                         break;
                     case MenuOption.Travel:
                         Travel();
