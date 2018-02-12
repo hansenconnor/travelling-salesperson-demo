@@ -170,10 +170,12 @@ namespace Demo_TheTravelingSalesperson
                 salesperson.CurrentStock.Type = Product.ProductType.None;
             }
 
+            int numberOfUnits;
+
             //
             // get number of products in inventory
             //
-            if (ConsoleValidator.TryGetIntegerFromUser(0, 100, 3, "products", out int numberOfUnits))
+            if (ConsoleValidator.TryGetIntegerFromUser(0, 100, 3, "products", out numberOfUnits))
             {
                 salesperson.CurrentStock.AddProducts(numberOfUnits);
             }
@@ -297,12 +299,18 @@ namespace Demo_TheTravelingSalesperson
         /// <returns>string City</returns>
         public string DisplayGetNextCity()
         {
+            ConsoleUtil.HeaderText = "Travel";
+            ConsoleUtil.DisplayReset();
+
             string nextCity = "";
 
             ConsoleUtil.DisplayReset();
 
             ConsoleUtil.DisplayPromptMessage("Enter the name of the next city:");
             nextCity = Console.ReadLine();
+
+            DisplayContinuePrompt();
+            
 
             return nextCity;
         }
@@ -316,13 +324,15 @@ namespace Demo_TheTravelingSalesperson
             ConsoleUtil.HeaderText = "Buy Inventory";
             ConsoleUtil.DisplayReset();
 
+            int numberOfUnitsToBuy;
+
             //
             // get number of products to buy
             //
             ConsoleUtil.DisplayMessage("Buying " + product.Type.ToString() + " products.");
             ConsoleUtil.DisplayMessage("");
 
-            if (!ConsoleValidator.TryGetIntegerFromUser(MINIMUM_BUYSELL_AMOUNT, MAXIMUM_BUYSELL_AMOUNT, MAXIMUM_ATTEMPTS, "products", out int numberOfUnitsToBuy))
+            if (!ConsoleValidator.TryGetIntegerFromUser(MINIMUM_BUYSELL_AMOUNT, MAXIMUM_BUYSELL_AMOUNT, MAXIMUM_ATTEMPTS, "products", out numberOfUnitsToBuy))
             {
                 ConsoleUtil.DisplayMessage("It appears you are having difficulty setting the number of products to buy.");
                 ConsoleUtil.DisplayMessage("By default, the number of products to sell will be set to zero.");
@@ -351,10 +361,13 @@ namespace Demo_TheTravelingSalesperson
             //
             // get number of products to sell
             //
+
+            int numberOfUnitsToSell;
+
             ConsoleUtil.DisplayMessage("Selling " + product.Type.ToString() + " products.");
             ConsoleUtil.DisplayMessage("");
 
-            if (!ConsoleValidator.TryGetIntegerFromUser(MINIMUM_BUYSELL_AMOUNT, MAXIMUM_BUYSELL_AMOUNT, MAXIMUM_ATTEMPTS, "products", out int numberOfUnitsToSell))
+            if (!ConsoleValidator.TryGetIntegerFromUser(MINIMUM_BUYSELL_AMOUNT, MAXIMUM_BUYSELL_AMOUNT, MAXIMUM_ATTEMPTS, "products", out numberOfUnitsToSell))
             {
                 ConsoleUtil.DisplayMessage("It appears you are having difficulty setting the number of products to sell.");
                 ConsoleUtil.DisplayMessage("By default, the number of products to sell will be set to zero.");

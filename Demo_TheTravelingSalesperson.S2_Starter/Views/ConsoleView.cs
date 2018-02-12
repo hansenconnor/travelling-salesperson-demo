@@ -140,6 +140,23 @@ namespace Demo_TheTravelingSalesperson
             salesperson.Age = Convert.ToInt32(Console.ReadLine());
             ConsoleUtil.DisplayMessage("");
 
+            ConsoleUtil.DisplayPromptMessage("Enter your gender(Male/Female/None): ");
+            string myGender = Console.ReadLine();
+            ConsoleUtil.DisplayMessage("");
+
+            Salesperson.Gender gender;
+
+            // compare user input to 'Gender' enum
+            if (Enum.TryParse<Salesperson.Gender>(UppercaseFirst(myGender), out gender))
+            {
+                salesperson.gender = gender;
+            }
+            // default
+            else
+            {
+                salesperson.gender = Salesperson.Gender.None;
+            }
+
             // Display list of products from Product.cs
             foreach (string productTypeName in Enum.GetNames(typeof(Product.ProductType)))
             {
@@ -172,7 +189,9 @@ namespace Demo_TheTravelingSalesperson
             //
             // get number of products in inventory
             //
-            if (ConsoleValidator.TryGetIntegerFromUser(0, 100, 3, "products", out int numberOfUnits))
+            int numberOfUnits;
+
+            if (ConsoleValidator.TryGetIntegerFromUser(0, 100, 3, "products", out numberOfUnits))
             {
                 salesperson.CurrentStock.AddProducts(numberOfUnits);
             }
@@ -220,6 +239,7 @@ namespace Demo_TheTravelingSalesperson
                 //
                 // set up display area
                 //
+                ConsoleUtil.HeaderText = "Menu";
                 ConsoleUtil.DisplayReset();
                 Console.CursorVisible = false;
 
@@ -311,6 +331,9 @@ namespace Demo_TheTravelingSalesperson
         /// <returns>string City</returns>
         public string DisplayGetNextCity()
         {
+            ConsoleUtil.HeaderText = "Travel";
+            ConsoleUtil.DisplayReset();
+
             string nextCity = "";
 
             ConsoleUtil.DisplayReset();
@@ -326,6 +349,7 @@ namespace Demo_TheTravelingSalesperson
         /// </summary>
         public void DisplayCitiesTraveled(Salesperson salesperson)
         {
+            ConsoleUtil.HeaderText = "Visited";
             ConsoleUtil.DisplayReset();
 
             ConsoleUtil.DisplayMessage("You have traveled to the following cities.");
@@ -499,10 +523,12 @@ namespace Demo_TheTravelingSalesperson
 
             Salesperson.Gender gender;
 
+            // compare user input to 'Gender' enum
             if (Enum.TryParse<Salesperson.Gender>(UppercaseFirst(Console.ReadLine()), out gender))
             {
                 return gender;
             }
+            // default
             else
             {
                 return Salesperson.Gender.None;
@@ -522,6 +548,7 @@ namespace Demo_TheTravelingSalesperson
                 //
                 // set up display area
                 //
+                ConsoleUtil.HeaderText = "Edit Account";
                 ConsoleUtil.DisplayReset();
                 Console.CursorVisible = false;
 
